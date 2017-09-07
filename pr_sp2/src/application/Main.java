@@ -21,7 +21,7 @@ public class Main extends Application {
 			newStage.show();
 
 			VBox root = new VBox();
-			Scene scene = new Scene(root);
+			Scene scene = new Scene(root, 200, 200);
 
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
