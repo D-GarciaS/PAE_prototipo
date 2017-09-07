@@ -12,14 +12,14 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fileIcon" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </HBox.margin>
       </ImageView>
       <VBox prefHeight="236.0" prefWidth="228.0">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Incoming file">
+            <Text fx:id="fileName" strokeType="OUTSIDE" strokeWidth="0.0" text="Incoming file">
                <VBox.margin>
                   <Insets bottom="5.0" left="20.0" right="10.0" top="10.0" />
                </VBox.margin>
@@ -27,19 +27,19 @@
                   <Font size="14.0" />
                </font>
             </Text>
-            <ProgressBar prefWidth="200.0" progress="0.0">
+            <ProgressBar fx:id="fileProgressBar" prefWidth="200.0" progress="0.0">
                <VBox.margin>
                   <Insets bottom="10.0" left="15.0" right="15.0" top="5.0" />
                </VBox.margin>
             </ProgressBar>
          </children>
       </VBox>
-      <Button mnemonicParsing="false" text="Hide">
+      <Button fx:id="button1" mnemonicParsing="false" text="Hide">
          <HBox.margin>
             <Insets bottom="20.0" left="5.0" right="5.0" top="30.0" />
          </HBox.margin>
       </Button>
-      <Button mnemonicParsing="false" text="Cancel">
+      <Button fx:id="button2" mnemonicParsing="false" text="Cancel">
          <HBox.margin>
             <Insets left="5.0" right="5.0" top="30.0" />
          </HBox.margin>
