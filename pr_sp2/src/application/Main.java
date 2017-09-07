@@ -15,12 +15,16 @@ import javafx.stage.Stage;
 public class Main extends Application {
 	
 	Button transmit;
+	Button increment;
 	Button receive;
+	
+	double pr = 0;
 	
 	@Override
 	public void start(Stage primaryStage) {
 		
 		transmit = new Button("Simulate transmision");
+		increment = new Button("Incrementar");
 		
 		try {
 
@@ -28,29 +32,36 @@ public class Main extends Application {
 			TransmissionList tl = new TransmissionList();
 			tl.create(newStage);
 			
-			tl.add();
 			
 			newStage.show();
 
 			VBox root = new VBox();
 			
 			EventHandler handler = new EventHandler(){
-
 				@Override
 				public void handle(Event event) {				
 					if(event.getEventType() == MouseEvent.MOUSE_CLICKED){
-					
 						tl.add("Archivo de audio", "audio_icon_template.png");
-						
 					}
 
 				}
-
 			};
 			
 			transmit.addEventHandler(MouseEvent.MOUSE_CLICKED, handler);
+
 			
-			root.getChildren().add(transmit);
+			increment.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {				
+				if(event.getEventType() == MouseEvent.MOUSE_CLICKED){
+					pr += 0.1;
+					tl.entries.get(0).setProgress(pr);
+					
+				}
+
+			});
+			
+			
+			
+			root.getChildren().addAll(transmit, increment);
 			
 			Scene scene = new Scene(root, 200, 200);
 

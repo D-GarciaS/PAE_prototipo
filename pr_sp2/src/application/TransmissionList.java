@@ -1,7 +1,9 @@
 package application;
 
+import java.awt.List;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,26 +18,13 @@ import javafx.stage.Stage;
 
 public class TransmissionList {
 	ScrollPane root = new ScrollPane();
+	ArrayList<TransmissionListEntry> entries = new ArrayList<>();
 	VBox lista =  new VBox();
 	
 	public TransmissionList() {
 			
 	}
 	
-	void add(){
-		Text text;
-		URL resource = getClass().getResource("incoming_file_layout.fxml");
-		HBox h = null;
-		try {
-			h = FXMLLoader.load(resource);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-				
-		lista.getChildren().addAll(h);
-		
-	}
 	
 	void add(String fileName){
 		
@@ -56,31 +45,24 @@ public class TransmissionList {
 	
 	void add(String fileName, String imageName){
 		
-		URL resource = getClass().getResource("incoming_file_layout.fxml");
-		HBox h = null;
-		try {
-			h = FXMLLoader.load(resource);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		TransmissionListEntry entry = new TransmissionListEntry(fileName, imageName);
+		entry.setParent(this);
+		entries.add(entry);
+		lista.getChildren().addAll(entry.h);
 		
-		((Text)h.lookup("#fileName")).setText(fileName);	
-		((ImageView)h.lookup("#fileIcon")).setImage(new Image(getClass().getResource("icon.png").toExternalForm()));
-		
-		lista.getChildren().addAll(h);
-		
+	}
+	
+	void remove(TransmissionListEntry entry){
+		int index = entries.indexOf(entry);
+		lista.getChildren().remove(index);
+		entries.remove(index);
 	}
 	
 	void create(Stage primaryStage){
 		try {
-			TransmissionListEntry h = new TransmissionListEntry();
-			lista.getChildren().addAll(h.h);
-
 			root.setContent(lista);
 			
-			Scene scene = new Scene(root,800,900);
-
+			Scene scene = new Scene(root,500,900);
 
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
